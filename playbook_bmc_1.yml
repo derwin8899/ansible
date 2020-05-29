@@ -1,12 +1,12 @@
 - hosts: all
   tasks:
-  - name: Ansible copy users.allow for backup
+  - name: Copy the quest agent users.allow for backup
     copy:
-      src: /app1/users.allow
-      dest: /app1/users.allow.backup
+      src: /etc/opt/quest/vas/users.allow
+      dest: /etc/opt/quest/vas/users.allow.backup
       remote_src: yes
 
-  - name: Ansible copy sudoers file for backup
+  - name: Copy sudoers file for backup
     copy:
       src: /etc/sudoers
       dest: /etc/sudoers.backup
@@ -14,7 +14,7 @@
 
   - name: Append users.allow with svc_1900
     lineinfile:
-      path: /app1/users.allow
+      path: /etc/opt/quest/vas/users.allow
       line: svc_1900
 
   - name: Update /etc/sudoers file with commands for svc_1900
